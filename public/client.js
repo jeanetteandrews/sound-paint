@@ -21,6 +21,20 @@ function setup() {
 }
 
 function draw() {
+  // Always draw the header/instructions so the page isn't blank before the first click
+  stroke(255);
+  strokeWeight(12);
+  fill(0);
+  textSize(18);
+  text(`${userCount} ${userCount === 1 ? 'person' : 'people'} currently painting with sound :)`, 20, 40);
+  textSize(12);
+  strokeWeight(2);
+  text(`Press:`, 20, 65);
+  text(`Z for Sine`, 20, 80);
+  text(`X for Triangle`, 20, 95);
+  text(`C for Square`, 20, 110);
+  text(`V for Sawtooth`, 20, 125);
+
   if (mouseIsPressed) {
     let index = floor(map(mouseX, 0, width, 0, midiNotes.length));
     index = constrain(index, 0, midiNotes.length - 1);
@@ -33,19 +47,6 @@ function draw() {
       osc.freq(midiToFreq(transposedMidi), 0.1);
       osc.amp(0.15 * ampMult, 0.1);
     }
-
-    stroke(255);
-    strokeWeight(12);  
-    fill(0);
-    textSize(18);
-    text(`${userCount} ${userCount === 1 ? 'person' : 'people'} currently painting with sound :)`, 20, 40);
-    textSize(12);
-    strokeWeight(2);  
-    text(`Press:`, 20, 65);
-    text(`Z for Sine`, 20, 80);
-    text(`X for Triangle`, 20, 95);
-    text(`C for Square`, 20, 110);
-    text(`V for Sawtooth`, 20, 125);
 
     strokeWeight(1);
     noFill();
